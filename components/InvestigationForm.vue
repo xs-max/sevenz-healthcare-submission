@@ -188,17 +188,20 @@ const groupedInvestigations = computed(() => {
 });
 
 const handleSubmit = async () => {
-  try {
+ try {
+    // Prepare the submission data
     const submissionData = {
       investigations: [
         ...selectedTests.value.xRay,
         ...selectedTests.value.ultrasound,
-      ].map(String),
-      ctscan: ctscanDetails.value || "",
-      mri: mriDetails.value || "",
-      developer: "Developer",
+      ].map(String), 
+      ctscan: ctscanDetails.value || "", 
+      mri: mriDetails.value || "", 
+      developer: "Godwin Ogbuji", 
     };
 
+
+    // Send the mutation using Apollo Client
     const response = await $apollo.mutate({
       mutation: gql`
         mutation AddMedicalRecord(
